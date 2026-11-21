@@ -10,4 +10,8 @@ public interface SocioDao {
     Optional<Socio> buscarPorDni(String dni);
 
     List<Socio> buscarPorNombre(String fragmento);
+
+    boolean existePorDni(String dni);
+
+    Socio crear(Socio socio);
 }

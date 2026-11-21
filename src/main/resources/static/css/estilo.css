@@ -139,6 +139,9 @@ button {
 table { width: 100%; border-collapse: collapse; margin-top: 12px; background: var(--tarjeta); }
 th, td { padding: 8px; text-align: left; border-bottom: 1px solid #d5dae2; }
 
+.formulario-campos { grid-template-columns: 1fr; margin-top: 16px; }
+.formulario-campos select { font: inherit; padding: 10px 12px; border: 1px solid #b8c0cc; border-radius: 8px; background: var(--tarjeta); color: var(--texto); }
+
 @media (max-width: 480px) {
     .formulario-linea { grid-template-columns: 1fr; }
 }

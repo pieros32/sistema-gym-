@@ -2,7 +2,7 @@
 
 Sistema web para la recepción de un gimnasio: registro de socios, renovación de membresías, pagos, validación de acceso diario, historial, alertas de vencimiento y reportes.
 
-> Estado: en desarrollo. Esta versión cubre las etapas E1 a E3 (conexión a MySQL, login con roles, búsqueda de socios y validación de acceso). El resto se documenta en las etapas siguientes.
+> Estado: en desarrollo. Esta versión cubre las etapas E1 a E4 (conexión a MySQL, login con roles, búsqueda de socios, validación de acceso, alta de socio y renovación con transacciones). El resto se documenta en las etapas siguientes.
 
 ## Requisitos
 
@@ -44,10 +44,11 @@ Abre `http://localhost:8080` (o la IP de la PC de recepción desde otra máquina
 ## Pruebas
 
 ```bash
-mvn test
+mvn test                                  # unitarias: no necesitan MySQL
+DB_CLAVE='<clave-de-desarrollo>' mvn test  # incluye la integración contra MySQL (crea iron_legacy_test)
 ```
 
-Las pruebas unitarias usan Mockito y no necesitan MySQL.
+La integración crea `iron_legacy_test` a partir de `db/schema.sql` y `db/seed.sql`, y la prueba de rollback de CU-02 y CU-03 corre contra MySQL real. Sin `DB_CLAVE` esa clase se omite.
 
 ## Usuarios de demostración
 

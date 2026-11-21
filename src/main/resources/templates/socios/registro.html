@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrar socio · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Registrar socio nuevo</span>
+</header>
+<main>
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <section th:if="${operacion}" class="resultado autorizado">
+        <h2>Socio registrado</h2>
+        <p class="socio" th:text="${operacion.socio().nombreCompleto()}">Socio</p>
+        <p>Membresía del <span th:text="${operacion.membresia().fechaInicio()}">inicio</span>
+            al <strong th:text="${operacion.membresia().fechaVencimiento()}">vencimiento</strong>.</p>
+        <p>Pago registrado: <span th:text="${operacion.pago().monto()}">monto</span>
+            (<span th:text="${operacion.pago().medioPago().name()}">medio</span>).</p>
+    </section>
+
+    <form method="post" th:action="@{/socios/registro}" class="formulario-campos">
+        <label for="nombreCompleto">Nombre completo</label>
+        <input id="nombreCompleto" name="nombreCompleto" maxlength="100" required
+               th:value="${nombreCompleto}">
+
+        <label for="dni">DNI (8 dígitos)</label>
+        <input id="dni" name="dni" inputmode="numeric" pattern="\d{8}" maxlength="8" required
+               th:value="${dni}">
+
+        <label for="telefono">Teléfono (9 dígitos)</label>
+        <input id="telefono" name="telefono" inputmode="numeric" pattern="\d{9}" maxlength="9" required
+               th:value="${telefono}">
+
+        <label for="idPlan">Plan</label>
+        <select id="idPlan" name="idPlan" required>
+            <option value="">Elige un plan</option>
+            <option th:each="plan : ${planes}" th:value="${plan.idPlan()}"
+                    th:text="${plan.nombre() + ' · ' + plan.precio()}">Plan</option>
+        </select>
+
+        <label for="medioPago">Medio de pago</label>
+        <select id="medioPago" name="medioPago" required>
+            <option value="">Elige un medio</option>
+            <option th:each="medio : ${medios}" th:value="${medio.name()}" th:text="${medio.name()}">Medio</option>
+        </select>
+
+        <button type="submit">Registrar socio y cobrar</button>
+    </form>
+</main>
+</body>
+</html>
