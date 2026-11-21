@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buscar socio · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Buscar socio</span>
+</header>
+<main>
+    <div th:replace="~{fragmentos/buscar-socio :: buscador(${texto}, ${resultados}, ${error})}"></div>
+</main>
+</body>
+</html>

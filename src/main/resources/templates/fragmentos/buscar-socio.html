@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<!-- CU-05: fragmento reutilizable. Lo usan las pantallas que necesitan encontrar a un socio. -->
+<div th:fragment="buscador(texto, resultados, error)">
+    <form method="get" th:action="@{/socios/buscar}" class="formulario-linea">
+        <label for="texto">DNI o nombre</label>
+        <input id="texto" name="texto" th:value="${texto}" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <table th:if="${resultados != null and !resultados.isEmpty()}">
+        <thead>
+        <tr><th>Nombre</th><th>DNI</th><th>Teléfono</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="socio : ${resultados}">
+            <td th:text="${socio.nombreCompleto()}">Nombre</td>
+            <td th:text="${socio.dni()}">DNI</td>
+            <td th:text="${socio.telefono()}">Teléfono</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${resultados != null and resultados.isEmpty()}">No se encontraron socios.</p>
+</div>
+</body>
+</html>

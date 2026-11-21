@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Validar acceso · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Validar acceso</span>
+</header>
+<main>
+    <form method="post" th:action="@{/acceso/validar}" class="formulario-linea">
+        <label for="dni">DNI del socio</label>
+        <input id="dni" name="dni" inputmode="numeric" pattern="\d{8}" maxlength="8"
+               th:value="${dni}" required autofocus>
+        <button type="submit">Validar</button>
+    </form>
+
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <section th:if="${resultado}" class="resultado"
+             th:classappend="${resultado.resultado().name() == 'AUTORIZADO'} ? 'autorizado' : 'denegado'">
+        <h2 th:text="${resultado.resultado().name() == 'AUTORIZADO'} ? 'AUTORIZADO' : 'DENEGADO'">ESTADO</h2>
+        <p class="socio" th:text="${resultado.socio().nombreCompleto()}">Socio</p>
+        <p th:if="${resultado.motivo()}" th:text="'Motivo: ' + ${resultado.motivo()}">Motivo</p>
+        <p th:if="${resultado.aviso()}" class="aviso" th:text="${resultado.aviso()}">Aviso</p>
+    </section>
+</main>
+</body>
+</html>
