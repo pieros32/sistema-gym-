@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ingreso · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body class="centrado">
+<main class="tarjeta">
+    <h1>IRON LEGACY</h1>
+    <p class="subtitulo">Ingreso a recepción</p>
+
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <form method="post" th:action="@{/login}">
+        <label for="nombreUsuario">Usuario</label>
+        <input id="nombreUsuario" name="nombreUsuario" autocomplete="username" required autofocus>
+
+        <label for="clave">Clave</label>
+        <input id="clave" name="clave" type="password" autocomplete="current-password" required>
+
+        <button type="submit">Ingresar</button>
+    </form>
+</main>
+</body>
+</html>

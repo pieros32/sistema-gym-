@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menú · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <span>IRON LEGACY</span>
+    <span th:text="${usuario.nombreCompleto()}">Usuario</span>
+    <a th:href="@{/logout}">Salir</a>
+</header>
+<main>
+    <h1>Menú principal</h1>
+    <nav class="menu">
+        <a th:if="${usuario.rol().name() == 'RECEPCIONISTA'}" th:href="@{/acceso/validar}">Validar acceso</a>
+        <a th:href="@{/socios/buscar}">Buscar socio</a>
+    </nav>
+</main>
+</body>
+</html>
