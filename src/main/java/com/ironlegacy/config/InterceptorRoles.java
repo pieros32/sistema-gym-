@@ -25,7 +25,7 @@ public class InterceptorRoles implements HandlerInterceptor {
             new ReglaCasoDeUso("/socios/buscar", "CU-05"),
             new ReglaCasoDeUso("/pagos/historial", "CU-07"),
             new ReglaCasoDeUso("/membresias/por-vencer", "CU-08"),
-            new ReglaCasoDeUso("/reportes/", "CU-09"));
+            new ReglaCasoDeUso("/reportes", "CU-09"));
 
     private record ReglaCasoDeUso(String prefijoRuta, String casoDeUso) {
     }

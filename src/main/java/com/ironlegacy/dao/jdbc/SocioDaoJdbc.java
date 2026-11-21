@@ -56,6 +56,12 @@ public class SocioDaoJdbc implements SocioDao {
     }
 
     @Override
+    public long contar() {
+        Long total = jdbc.queryForObject("SELECT COUNT(*) FROM socio", Long.class);
+        return total == null ? 0 : total;
+    }
+
+    @Override
     public Socio crear(Socio socio) {
         Number idGenerado = insercion.executeAndReturnKey(Map.of(
                 "nombre_completo", socio.nombreCompleto(),

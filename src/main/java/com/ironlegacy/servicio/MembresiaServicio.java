@@ -14,11 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class MembresiaServicio {
+
+    /** RN-07: ventana de aviso de vencimiento, en días. */
+    static final int DIAS_POR_VENCER = 7;
 
     private final PlanMembresiaDao planMembresiaDao;
     private final MembresiaDao membresiaDao;
@@ -68,6 +72,18 @@ public class MembresiaServicio {
         Membresia membresia = crear(socio.idSocio(), plan, inicio);
         Pago pago = pagoServicio.registrar(membresia, plan.precio(), medioPago, usuario, hoy);
         return new ResultadoOperacion(socio, membresia, pago);
+    }
+
+    /** CU-08 (RN-07): membresías que vencen de hoy a dentro de 7 días. */
+    public List<VencimientoProximo> proximosAVencer() {
+        LocalDate hoy = LocalDate.now(reloj);
+        return membresiaDao.buscarPorVencer(hoy, hoy.plusDays(DIAS_POR_VENCER)).stream()
+                .map(vencimiento -> new VencimientoProximo(
+                        vencimiento.nombreCompleto(),
+                        vencimiento.telefono(),
+                        vencimiento.fechaVencimiento(),
+                        (int) ChronoUnit.DAYS.between(hoy, vencimiento.fechaVencimiento())))
+                .toList();
     }
 
     /** RN-04: si la membresía sigue vigente, la nueva empieza al día siguiente; si venció, hoy. */

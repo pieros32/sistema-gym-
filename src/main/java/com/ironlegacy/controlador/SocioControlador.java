@@ -58,7 +58,7 @@ public class SocioControlador {
         modelo.addAttribute("dni", dni);
         modelo.addAttribute("telefono", telefono);
         try {
-            var datos = new DatosRegistroSocio(nombreCompleto, dni, telefono, idPlan, medioPago);
+            DatosRegistroSocio datos = new DatosRegistroSocio(nombreCompleto, dni, telefono, idPlan, medioPago);
             modelo.addAttribute("operacion", socioServicio.registrar(datos, usuario));
         } catch (NegocioException e) {
             modelo.addAttribute("error", e.getMessage());

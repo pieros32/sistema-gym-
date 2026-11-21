@@ -145,3 +145,27 @@ th, td { padding: 8px; text-align: left; border-bottom: 1px solid #d5dae2; }
 @media (max-width: 480px) {
     .formulario-linea { grid-template-columns: 1fr; }
 }
+
+.insignia {
+    display: inline-block;
+    min-width: 1.6em;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--error);
+    color: #fff;
+    font-size: 0.85rem;
+    text-align: center;
+}
+.reporte { display: grid; gap: 12px; margin-top: 16px; }
+.tarjeta-dato {
+    background: var(--tarjeta);
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    display: grid;
+    gap: 4px;
+}
+.tarjeta-dato span { font-weight: 600; }
+.tarjeta-dato strong { font-size: 1.8rem; color: var(--primario); }
+.tarjeta-dato small { opacity: 0.75; }

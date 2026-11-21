@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Por vencer · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Membresías por vencer</span>
+</header>
+<main>
+    <p>Membresías que vencen entre hoy y dentro de 7 días.</p>
+    <p th:if="${vencimientos.isEmpty()}">No hay membresías por vencer en los próximos 7 días.</p>
+    <table th:unless="${vencimientos.isEmpty()}">
+        <thead>
+        <tr><th>Socio</th><th>Teléfono</th><th>Vence</th><th>Días restantes</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="v : ${vencimientos}">
+            <td th:text="${v.nombreCompleto()}">Socio</td>
+            <td th:text="${v.telefono()}">900000000</td>
+            <td th:text="${v.fechaVencimiento()}">2026-01-01</td>
+            <td th:text="${v.diasRestantes()}">0</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

@@ -14,4 +14,6 @@ public interface SocioDao {
     boolean existePorDni(String dni);
 
     Socio crear(Socio socio);
+
+    long contar();
 }

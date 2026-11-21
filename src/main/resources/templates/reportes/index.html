@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reportes · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Reportes</span>
+</header>
+<main>
+    <form method="get" th:action="@{/reportes}" class="formulario-linea">
+        <label for="mes">Mes</label>
+        <input id="mes" name="mes" type="month" th:value="${resumen != null ? resumen.mes() : ''}">
+        <button type="submit">Ver</button>
+    </form>
+
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <section th:if="${resumen}" class="reporte">
+        <div class="tarjeta-dato">
+            <span>Socios activos</span>
+            <strong th:text="${resumen.sociosActivos()}">0</strong>
+            <small>Con una membresía vigente hoy</small>
+        </div>
+        <div class="tarjeta-dato">
+            <span>Ingresos del mes</span>
+            <strong th:text="${resumen.ingresosDelMes()}">0.00</strong>
+            <small th:text="${resumen.mes()}">AAAA-MM</small>
+        </div>
+        <div class="tarjeta-dato">
+            <span>Por vencer</span>
+            <strong th:text="${resumen.porVencer()}">0</strong>
+            <small><a th:href="@{/membresias/por-vencer}">Ver lista (próximos 7 días)</a></small>
+        </div>
+    </section>
+</main>
+</body>
+</html>

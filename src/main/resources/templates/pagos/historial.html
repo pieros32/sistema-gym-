@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historial de pagos · IRON LEGACY</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<header class="barra">
+    <a th:href="@{/menu}">← Menú</a>
+    <span>Historial de pagos</span>
+</header>
+<main>
+    <form method="get" th:action="@{/pagos/historial}" class="formulario-linea">
+        <label for="dni">DNI del socio</label>
+        <input id="dni" name="dni" inputmode="numeric" pattern="\d{8}" maxlength="8" th:value="${dni}" required>
+        <button type="submit">Ver pagos</button>
+    </form>
+
+    <p class="alerta" th:if="${error}" th:text="${error}">Error</p>
+
+    <section th:if="${historial}">
+        <h2 th:text="${historial.socio().nombreCompleto()}">Socio</h2>
+        <p th:if="${historial.pagos().isEmpty()}">Este socio aún no tiene pagos registrados.</p>
+        <table th:unless="${historial.pagos().isEmpty()}">
+            <thead>
+            <tr>
+                <th>Fecha</th><th>Monto</th><th>Medio</th><th>Plan</th><th>Periodo</th><th>Registró</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pago : ${historial.pagos()}">
+                <td th:text="${pago.fechaPago()}">2026-01-01</td>
+                <td th:text="${pago.monto()}">1.00</td>
+                <td th:text="${pago.medioPago().name()}">YAPE</td>
+                <td th:text="${pago.nombrePlan()}">Mensual</td>
+                <td th:text="${pago.fechaInicio()} + ' al ' + ${pago.fechaVencimiento()}">periodo</td>
+                <td th:text="${pago.nombreUsuario()}">Recepción</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

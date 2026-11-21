@@ -23,6 +23,12 @@ public class MembresiaControlador {
         this.membresiaServicio = membresiaServicio;
     }
 
+    @GetMapping("/por-vencer")
+    public String porVencer(Model modelo) {
+        modelo.addAttribute("vencimientos", membresiaServicio.proximosAVencer());
+        return "membresias/por-vencer";
+    }
+
     @GetMapping("/renovar")
     public String formularioRenovacion(Model modelo) {
         cargarOpciones(modelo);

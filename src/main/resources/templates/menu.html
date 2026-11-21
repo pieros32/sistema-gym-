@@ -16,7 +16,15 @@
     <h1>Menú principal</h1>
     <nav class="menu">
         <a th:if="${usuario.rol().name() == 'RECEPCIONISTA'}" th:href="@{/acceso/validar}">Validar acceso</a>
+        <a th:if="${usuario.rol().name() == 'RECEPCIONISTA'}" th:href="@{/socios/registro}">Registrar socio nuevo</a>
+        <a th:if="${usuario.rol().name() == 'RECEPCIONISTA'}" th:href="@{/membresias/renovar}">Renovar membresía</a>
         <a th:href="@{/socios/buscar}">Buscar socio</a>
+        <a th:href="@{/pagos/historial}">Historial de pagos</a>
+        <a th:href="@{/membresias/por-vencer}">
+            Por vencer
+            <span class="insignia" th:if="${porVencer > 0}" th:text="${porVencer}">0</span>
+        </a>
+        <a th:if="${usuario.rol().name() == 'ADMINISTRADOR'}" th:href="@{/reportes}">Reportes</a>
     </nav>
 </main>
 </body>

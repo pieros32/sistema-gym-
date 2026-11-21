@@ -2,7 +2,7 @@
 
 Sistema web para la recepción de un gimnasio: registro de socios, renovación de membresías, pagos, validación de acceso diario, historial, alertas de vencimiento y reportes.
 
-> Estado: en desarrollo. Esta versión cubre las etapas E1 a E4 (conexión a MySQL, login con roles, búsqueda de socios, validación de acceso, alta de socio y renovación con transacciones). El resto se documenta en las etapas siguientes.
+> Estado: en desarrollo. Esta versión cubre las etapas E1 a E5: conexión a MySQL, login con roles, búsqueda de socios, validación de acceso, alta y renovación con transacciones, historial de pagos, membresías por vencer y reportes. El resto se documenta en las etapas siguientes.
 
 ## Requisitos
 
@@ -40,6 +40,14 @@ Variables de entorno (todas opcionales salvo `DB_CLAVE`):
 | `SERVIDOR_DIRECCION` | `0.0.0.0` | Interfaz de escucha; `0.0.0.0` permite el acceso desde otras PCs de la red |
 
 Abre `http://localhost:8080` (o la IP de la PC de recepción desde otra máquina).
+
+### Con datos de demostración
+
+El perfil `demo` crea 8 socios con membresías vigentes, por vencer y vencidas. Las fechas son relativas a hoy. Solo se crean si la tabla `socio` está vacía:
+
+```bash
+DB_CLAVE='<clave-de-desarrollo>' mvn spring-boot:run -Dspring-boot.run.profiles=demo
+```
 
 ## Pruebas
 

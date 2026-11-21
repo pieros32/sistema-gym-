@@ -2,6 +2,7 @@ package com.ironlegacy.controlador;
 
 import com.ironlegacy.config.ClavesSesion;
 import com.ironlegacy.modelo.Usuario;
+import com.ironlegacy.servicio.MembresiaServicio;
 import com.ironlegacy.servicio.NegocioException;
 import com.ironlegacy.servicio.SesionServicio;
 import jakarta.servlet.http.HttpSession;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class SesionControlador {
 
     private final SesionServicio sesionServicio;
+    private final MembresiaServicio membresiaServicio;
 
-    public SesionControlador(SesionServicio sesionServicio) {
+    public SesionControlador(SesionServicio sesionServicio, MembresiaServicio membresiaServicio) {
         this.sesionServicio = sesionServicio;
+        this.membresiaServicio = membresiaServicio;
     }
 
     @GetMapping("/")
@@ -49,6 +52,7 @@ public class SesionControlador {
     @GetMapping("/menu")
     public String menu(@SessionAttribute(ClavesSesion.USUARIO) Usuario usuario, Model modelo) {
         modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("porVencer", membresiaServicio.proximosAVencer().size());
         return "menu";
     }
 
