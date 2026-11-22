@@ -7,7 +7,7 @@ Trabajo del curso Análisis y Diseño de Sistemas (UTP). Arquitectura en capas c
 ## Requisitos
 
 - Java 17 o superior (probado con Java 21)
-- Maven 3.9 o superior
+- Maven 3.9 o superior, **o** el Maven Wrapper incluido (`mvnw` / `mvnw.cmd`), que descarga Maven solo y no requiere instalarlo
 - MySQL 8 (probado con 8.0.46)
 
 ## 1. Preparar la base de datos
@@ -41,6 +41,17 @@ Variables de entorno (solo `DB_CLAVE` es obligatoria):
 | `DB_URL` | `jdbc:mysql://localhost:3306/iron_legacy?serverTimezone=America/Lima&useSSL=false&allowPublicKeyRetrieval=true` | Cadena de conexión |
 | `PUERTO` | `8080` | Puerto HTTP |
 | `SERVIDOR_DIRECCION` | `0.0.0.0` | Interfaz de escucha. `0.0.0.0` permite el acceso desde la red local (RNF-06). |
+
+### Sin instalar Maven (Windows)
+
+Usa el wrapper en lugar de `mvn`. Solo necesitas Java 17 o superior:
+
+```bat
+set DB_CLAVE=<clave-de-desarrollo>
+mvnw.cmd spring-boot:run
+```
+
+En Linux o macOS: `./mvnw spring-boot:run`.
 
 ### Con datos de demostración
 
