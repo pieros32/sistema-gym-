@@ -12,7 +12,7 @@ Trabajo del curso Análisis y Diseño de Sistemas (UTP). Arquitectura en capas c
 
 ## 1. Preparar la base de datos
 
-Como administrador de MySQL, crea el usuario de desarrollo y las bases. Reemplaza `<clave-de-desarrollo>` por una clave propia; no la guardes en el repositorio.
+Como administrador de MySQL, crea el usuario de desarrollo y las bases. 
 
 ```bash
 sudo mysql -e "CREATE USER IF NOT EXISTS 'iron_legacy'@'localhost' IDENTIFIED BY '<clave-de-desarrollo>';"
@@ -80,7 +80,7 @@ DB_CLAVE='<clave-de-desarrollo>' mvn test   # incluye las pruebas de integració
 - **Unitarias (21):** reglas RN-02, RN-03, RN-04 y RN-07, los cuatro caminos de CU-04, y las validaciones de CU-02. Usan Mockito y no tocan la base.
 - **Integración (11):** corren contra MySQL real en `iron_legacy_test`, creada desde `db/schema.sql` y `db/seed.sql` (solo cambia el nombre). Cubren el rollback de CU-02 y CU-03 cuando falla el pago, la regla de por vencer en SQL y los reportes. Sin `DB_CLAVE` esa clase se omite.
 
-Los resultados de cada caso están en [`docs/pruebas.md`](docs/pruebas.md). La última ejecución: 32 pruebas, 32 aprobadas.
+
 
 ## 4. Uso por rol
 
