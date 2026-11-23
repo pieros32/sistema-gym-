@@ -97,6 +97,8 @@ Para comprobar que CP-23 y CP-24 realmente detectan un fallo de transacción, se
 
 ## Notas
 
+0. **Tarifas.** Las ejecuciones manuales y de integración de las secciones A y B se hicieron con la tarifa provisional de 1.00 por plan. Después se fijó la tarifa vigente (Mensual 60.00, Trimestral 150.00). CP-31 ahora calcula el ingreso esperado a partir del precio del plan y se volvió a ejecutar con la tarifa nueva: aprobada. Los montos de 1.00 que aparecen en los resultados obtenidos corresponden a esa ejecución.
+
 1. **Datos de las capturas.** Las capturas 08 y 09 registraron al socio Irene y renovaron a Gloria mientras se tomaban. Por eso el reporte muestra 8 socios activos y 4.00 de ingresos (los datos de la demostración más esas dos operaciones).
 2. **Dato de rendimiento.** El tiempo medido corresponde al método `AccesoServicio.validarAcceso` completo (consultas y escritura), no a la petición HTTP. Es un valor a validar con el administrador.
 3. **Regla de fin de mes (RN-02).** CP-03 documenta el resultado de la regla tal como está. Pendiente de confirmar con el administrador.

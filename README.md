@@ -98,7 +98,21 @@ Sin sesión, cualquier página redirige a `/login`.
 
 ## 5. Tarifas
 
-Los precios de `db/seed.sql` (Mensual y Trimestral) son **provisionales, de 1.00**, marcados con `-- TARIFA PENDIENTE`. La tarifa real la entrega el administrador; cámbiala en la tabla `plan_membresia`.
+Los planes de `db/seed.sql` tienen la tarifa vigente, en soles:
+
+| Plan | Duración | Precio |
+|---|---|---|
+| Mensual | 1 mes | 60.00 |
+| Trimestral | 3 meses | 150.00 |
+
+Para cambiarlas en una base que ya existe (el sistema no tiene pantalla para esto):
+
+```sql
+UPDATE plan_membresia SET precio = 60.00  WHERE nombre = 'Mensual';
+UPDATE plan_membresia SET precio = 150.00 WHERE nombre = 'Trimestral';
+```
+
+El cambio solo afecta a los pagos nuevos; los pagos ya registrados conservan su monto.
 
 ## 6. Decisiones y limitaciones
 

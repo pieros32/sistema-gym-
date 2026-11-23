@@ -118,7 +118,9 @@ class ConsultasIntegracionTest {
         var anterior = reporteServicio.resumen(mesAnterior);
 
         assertEquals(2, actual.sociosActivos());
-        assertEquals(0, new BigDecimal("2.00").compareTo(actual.ingresosDelMes()));
+        BigDecimal precioMensual = jdbc.queryForObject(
+                "SELECT precio FROM plan_membresia WHERE nombre = 'Mensual'", BigDecimal.class);
+        assertEquals(0, precioMensual.multiply(new BigDecimal("2")).compareTo(actual.ingresosDelMes()));
         assertEquals(0, actual.porVencer());
         assertEquals(0, BigDecimal.ZERO.compareTo(anterior.ingresosDelMes()));
     }

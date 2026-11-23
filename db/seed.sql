@@ -1,9 +1,9 @@
 USE iron_legacy;
 
--- Planes. Precios provisionales: la tarifa real la entrega el administrador.
+-- Planes con la tarifa vigente (en soles).
 INSERT INTO plan_membresia (nombre, duracion_meses, precio) VALUES
-  ('Mensual',    1, 1.00),  -- TARIFA PENDIENTE
-  ('Trimestral', 3, 1.00);  -- TARIFA PENDIENTE
+  ('Mensual',    1,  60.00),
+  ('Trimestral', 3, 150.00);
 
 -- Usuarios de demostración. Solo se guarda el hash BCrypt; las claves están en el README.
 INSERT INTO usuario (nombre_completo, nombre_usuario, clave_hash, rol) VALUES

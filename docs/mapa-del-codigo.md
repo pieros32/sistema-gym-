@@ -12,7 +12,7 @@ iron-legacy/
 ├─ .gitignore                     Excluye target/, IDEs y secretos (.env).
 ├─ db/
 │  ├─ schema.sql                  Esquema MySQL 8 (InnoDB). Sin vistas: el estado se calcula en el dominio.
-│  └─ seed.sql                    Planes (tarifa provisional 1.00) y usuarios demo con hash BCrypt.
+│  └─ seed.sql                    Planes (Mensual 60.00, Trimestral 150.00) y usuarios demo con hash BCrypt.
 ├─ docs/
 │  ├─ pruebas.md                  Casos de prueba CP-01 a CP-M20 con resultado obtenido.
 │  ├─ mapa-del-codigo.md          Este archivo.
