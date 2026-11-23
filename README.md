@@ -2,7 +2,7 @@
 
 Sistema web para la recepción de un gimnasio: registro de socios, renovación de membresías, pagos, validación de acceso diario, historial de pagos, alertas de vencimiento y reportes.
 
-Trabajo del curso Análisis y Diseño de Sistemas (UTP). Arquitectura en capas con MVC, DAO y JDBC sobre MySQL 8. El mapa del código está en [`docs/mapa-del-codigo.md`](docs/mapa-del-codigo.md) y los casos de prueba en [`docs/pruebas.md`](docs/pruebas.md).
+Trabajo del curso Análisis y Diseño de Sistemas (UTP). Arquitectura en capas con MVC, DAO y JDBC sobre MySQL 8.
 
 ## Requisitos
 
@@ -122,5 +122,5 @@ El cambio solo afecta a los pagos nuevos; los pagos ya registrados conservan su 
 - **Acceso desde la red:** el servidor escucha en `0.0.0.0` y sirve HTTP sin cifrar. En una red local de confianza basta; si el sistema sale de esa red, debe ir detrás de HTTPS.
 - **Datos de demostración:** `DatosDemo` no es transaccional. Si falla a mitad, la tabla queda incompleta y hay que reiniciar la base.
 - **Duplicado de DNI en simultáneo:** la restricción `UNIQUE` de la base es la última barrera. El código traduce el error al mensaje correcto, aunque no se probó con dos altas reales a la vez.
-- **Desviaciones del diseño original:** sin vista `v_membresia_estado` (el estado se calcula en el dominio) y sin edición de datos del socio (ningún caso de uso la pide). Ver la tabla completa en `docs/mapa-del-codigo.md`.
+- **Desviaciones del diseño original:** sin vista `v_membresia_estado` (el estado se calcula en el dominio) y sin edición de datos del socio (ningún caso de uso la pide).
 
