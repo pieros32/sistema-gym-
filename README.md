@@ -124,11 +124,3 @@ El cambio solo afecta a los pagos nuevos; los pagos ya registrados conservan su 
 - **Duplicado de DNI en simultáneo:** la restricción `UNIQUE` de la base es la última barrera. El código traduce el error al mensaje correcto, aunque no se probó con dos altas reales a la vez.
 - **Desviaciones del diseño original:** sin vista `v_membresia_estado` (el estado se calcula en el dominio) y sin edición de datos del socio (ningún caso de uso la pide). Ver la tabla completa en `docs/mapa-del-codigo.md`.
 
-## 7. Estructura
-
-```
-db/           schema.sql, seed.sql
-docs/         pruebas.md, mapa-del-codigo.md, capturas/
-src/main/     controlador/, servicio/, dao/ (y dao/jdbc/), modelo/, config/, templates/, static/
-src/test/     unitarias (modelo, servicio) e integración (MySQL real)
-```
